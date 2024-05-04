@@ -1,13 +1,14 @@
 import './App.css'
+// import { Collect } from './components/collect/collect/Collect'
+import  Navbar from './components/common/Navbar'
 
 function App() {
 
   return (
-    <>
-     <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-    </>
+    <div>
+    <Navbar/>
+     
+    </div>
   )
 }
 
