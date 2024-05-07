@@ -19,7 +19,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="text-white font-bold text-xl mr-4">HopeHelps</div>
         {/* Navbar Links */}
-        <div className={`md:hidden ${isMenuOpen ? '' : 'hidden'} absolute left-0 top-0 h-full bg-gray-800 w-56`}>
+        <div style={{ transition: 'all 0.3s ease-in-out' }} className={`md:hidden ${isMenuOpen ? '' : 'hidden'} text-center border rounded-md absolute left-1 top-16 h-50 bg-gray-800 w-60 ` }>
           <ul className="flex flex-col justify-center h-full">
             <li className="text-white my-4">Home</li>
             <li className="text-white my-4">About</li>
