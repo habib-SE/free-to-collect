@@ -13,7 +13,6 @@ const Hero = () => {
             popularised in the t we will be able to make an impact.
           </p>
           <p
-         
             className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
           >
             Get started
@@ -36,11 +35,11 @@ const Hero = () => {
             Donate Now
           </p>
         </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex object-cover ">
+        <div className="lg:mt-0 border rounded-sm lg:col-span-5 lg:flex object-cover ">
           <img
             src="https://images.pexels.com/photos/6995223/pexels-photo-6995223.jpeg?auto=compress&cs=tinysrgb&w=600"
             alt="mockup"
-            className="object-cover h-[80vh] w-full"
+            className="object-cover h-[50vh] lg:h-[80vh] md:h-[70vh] w-full"
           />
         </div>
       </div>
