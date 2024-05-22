@@ -30,7 +30,7 @@ const Navbar = () => {
         </Link>
         {/* Hamburger Menu */}
         <div
-          className={`md:hidden text-center border rounded-md absolute left-1 top-16 h-50 bg-gray-800 w-60 transition-transform duration-300 ${
+          className={`md:hidden text-center border rounded-md absolute left-0 top-16 h-50 bg-gray-800 w-60 transition-transform duration-300 ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
