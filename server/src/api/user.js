@@ -12,8 +12,9 @@ import { User } from '../models/user.js';
 export const signup = async (req, res) => {
   console.log(req.files); // Check if files are being received
 
-  const { firstName, lastName, email, password, number, gender, address } = req.body;
-
+  const { firstName, lastName, email, password, number, gender, address, is_donar } = req.body;
+console.log("is_donar",is_donar);
+console.log(" req.body", req.body);
   try {
     // Check if the email already exists
     const existingUser = await User.findOne({ email });
@@ -33,7 +34,8 @@ export const signup = async (req, res) => {
       password: hashedPassword,
       number,
       address,
-      gender
+      gender,
+      is_donar
     });
 
     const savedUser = await newUser.save();
@@ -45,12 +47,13 @@ export const signup = async (req, res) => {
 };
 
 
-
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
+    console.log('user---------------------------',user);
+
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -68,6 +71,7 @@ export const signIn = async (req, res) => {
       "your_secret_key",
       // { expiresIn: "1h" }
     );
+    console.log('user---------------------------',user);
     res.status(200).json({
       token,
       user: {
@@ -75,9 +79,7 @@ export const signIn = async (req, res) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        number: user.number,
-        gender: user.gender,
-        address: user.address,
+        is_donar: user.is_donar
       },
     });
   } catch (error) {
@@ -90,8 +92,8 @@ export const signIn = async (req, res) => {
 
 export const getAllUser = async (req, res) => {
   try {
-    const businesses = await User.find();
-    res.status(200).json(businesses);
+    const users = await User.find();
+    res.status(200).json(users);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

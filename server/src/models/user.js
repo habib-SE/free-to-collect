@@ -15,6 +15,9 @@ const UserSchema = new Schema({
     password: {
         type: String,
     },
+    is_donar: {
+        type: Boolean  
+    },
     number: {
         type: String,
     },

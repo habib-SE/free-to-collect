@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import ApiService from '../../api/ApiService';
+import Loading from '../loading/Loading';
 
 const Login = () => {
-
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -20,9 +21,13 @@ const Login = () => {
 
     onSubmit: async (values) => {
       console.log('values', values);
+      setLoading(true);
       try {
         const loginRes = await ApiService.auth("login", values)
+        console.log('loginRes',loginRes);
         localStorage.setItem('userData', JSON.stringify(loginRes));
+        
+        setLoading(false);
         navigate('/')
         window.location.reload()
       } catch (error) {
@@ -31,7 +36,10 @@ const Login = () => {
     },
   });
 
-  return (
+  return loading? <div className='flex bg-slate-900 justify-center items-center h-screen'>
+  {<Loading/>}
+ </div>
+  :(
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
