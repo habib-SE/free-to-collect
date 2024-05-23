@@ -1,3 +1,4 @@
+// src/components/Login.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -33,6 +34,7 @@ const Login = () => {
         window.location.reload()
       } catch (error) {
         console.log(error)
+        setLoading(false);
       }
     },
   });
@@ -137,4 +139,3 @@ const Login = () => {
 };
 
 export default Login;
-

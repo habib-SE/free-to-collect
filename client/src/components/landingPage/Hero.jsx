@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
@@ -7,6 +6,7 @@ const handleButton = () =>{
   // if(storedUserData){
     navigate('/donate-now')
   // }else{
+    
     // navigate('/signup')
   // }
   

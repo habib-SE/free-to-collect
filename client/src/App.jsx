@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Outlet, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/common/Navbar';
 import Footer from './components/footer/Footer';
@@ -9,6 +9,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Contact from './components/contact/Contact';
 import PrivateRoute from './components/privateRoute/PrivateRoute';
+import Admin from './pages/admin/Admin';
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/admin" element={  <Admin />} />
         
         {/* Protected Route */}
         <Route 

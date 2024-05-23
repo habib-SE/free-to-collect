@@ -2,11 +2,12 @@
 import React, { useEffect } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 
+// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ children }) => {
   const navigate = useNavigate();
   const storedUserData = localStorage.getItem('userData');
   const jsonData = storedUserData ? JSON.parse(storedUserData) : null;
-  const isDonor = jsonData?.user?.is_donor;
+  const isDonor = jsonData?.user?.is_donar;
 
   useEffect(() => {
     if (!jsonData?.token) {

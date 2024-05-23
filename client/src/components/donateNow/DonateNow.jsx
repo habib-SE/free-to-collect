@@ -68,7 +68,7 @@ const categories = [
 
       // Append file fields
       const selectedFiles = Array.from(values.files);
-      selectedFiles.forEach((file, index) => {
+      selectedFiles.forEach((file) => {
         formData.append(`portfolioImages`, file);
       });
 
