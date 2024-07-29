@@ -117,14 +117,14 @@ const Navbar = () => {
               About
             </Link>
           </li>
-          {/* <li>
+          <li>
             <Link
               to="/donate-now"
               className="text-white mr-6 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             >
               Donate
             </Link>
-          </li> */}
+          </li> 
           <li>
             <Link
               to="/contact"
@@ -158,9 +158,9 @@ const Navbar = () => {
                       <Link onClick={() => { localStorage.clear(); window.location.reload() }} className="px-4 py-2 hover:bg-gray-200">
                         Logout
                       </Link>
-                      <Link to={'/admin'} className="px-4 py-2 hover:bg-gray-200">
+                      {/* <Link to={'/admin'} className="px-4 py-2 hover:bg-gray-200">
                         Admin
-                      </Link>
+                      </Link> */}
                     </>)
               }
             </ul>

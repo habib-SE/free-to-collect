@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_BASE_URL = "http://localhost:5555/api";
+export const API_BASE_URL = "http://localhost:5000/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -142,6 +142,22 @@ const ApiService = {
       console.error(error);
     }
   },
+  sendResetPasswordInstructions: async (email) => {
+    try {
+      const response = await api.post(`/forgot-password`, { email });
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  },
+  sendResetPassword: async (id,token, password) => {
+    try {
+      const response = await api.post(`/reset-password/${id}/${token}`, { password });
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  },
 
   // stripe payments apis
   connectStripe: async (endpoint, userId) => {
@@ -152,6 +168,7 @@ const ApiService = {
       console.error("Stripe connect error:",error);
     }
   },
+  
 };
 
 export default ApiService;

@@ -1,4 +1,3 @@
-// src/components/Login.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -115,9 +114,9 @@ const Login = () => {
                     </label>
                   </div>
                 </div>
-                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                <Link to="/forgot-password" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
                   Forgot password?
-                </a>
+                </Link>
               </div>
               <button
                 type="submit" className="inline-flex items-center justify-center px-5 py-3 w-full text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
@@ -137,5 +136,4 @@ const Login = () => {
     </section>
   );
 };
-
 export default Login;

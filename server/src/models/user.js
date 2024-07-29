@@ -15,14 +15,14 @@ const UserSchema = new Schema({
     password: {
         type: String,
     },
-    is_donar: {
-        type: Boolean  
-    },
     number: {
         type: String,
     },
     gender: {
         type: String  
+    },
+    is_donar: {
+        type: Boolean  
     },
     address: {
         street: String,
@@ -36,5 +36,4 @@ const UserSchema = new Schema({
     }
 }, { timestamps: true });
 
-// export const User = mongoose.model('User', UserSchema);
 export const User = mongoose.models.User || mongoose.model('User', UserSchema);

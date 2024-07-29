@@ -24,7 +24,7 @@ const categories = [
   'Hygiene Products',
 ];
 
-const Receiver = () => {
+export const Collect = () => {
   const [donations, setDonations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -152,4 +152,5 @@ const Receiver = () => {
     </div>
   );
 };
-export default Receiver;
+
+export default Collect;
