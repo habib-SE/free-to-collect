@@ -9,11 +9,12 @@ import path from 'path';
 import Auth from './routes/user-route.js';
 import Donation from './routes/donate-route.js';
 import Booking from './routes/booking-route.js';
+import Review from './routes/review-route.js'; // Correctly import review routes
 import { User } from './models/user.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
-import modRewrite from 'connect-modrewrite'
+import modRewrite from 'connect-modrewrite';
 
 dotenv.config();
 
@@ -44,6 +45,7 @@ app.use(modRewrite(rules));
 app.use('/api', Auth);
 app.use('/api', Donation);
 app.use('/api', Booking);
+app.use('/api', Review); // Correctly use review routes
 
 // Forgot Password Route
 app.post('/api/forgot-password', async (req, res) => {
@@ -86,11 +88,11 @@ app.post('/api/forgot-password', async (req, res) => {
 
 // Reset Password Route
 app.post('/api/reset-password/:id/:token', async (req, res) => {
-  const {id, token } = req.params;
+  const { id, token } = req.params;
   const { password } = req.body;
 
   try {
-    const decoded = jwt.verify(id,token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
 
     if (!user) {

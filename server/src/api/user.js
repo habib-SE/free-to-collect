@@ -1,20 +1,29 @@
-import express from 'express';
-import multer from 'multer';
-import jwt from 'jsonwebtoken';
+import express from "express";
+import multer from "multer";
+import jwt from "jsonwebtoken";
 // import bcrypt from "bcryptjs";
 import bcrypt from "bcrypt";
 import cloudinary from "../config/config.js";
 
-import { User } from '../models/user.js';
+import { User } from "../models/user.js";
 
 // const router = express.Router();
 
 export const signup = async (req, res) => {
   console.log(req.files); // Check if files are being received
 
-  const { firstName, lastName, email, password, number, gender, address, is_donar } = req.body;
-console.log("is_donar",is_donar);
-console.log(" req.body", req.body);
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    number,
+    gender,
+    address,
+    is_donar,
+  } = req.body;
+  console.log("is_donar", is_donar);
+  console.log(" req.body", req.body);
   try {
     // Check if the email already exists
     const existingUser = await User.findOne({ email });
@@ -35,24 +44,27 @@ console.log(" req.body", req.body);
       number,
       address,
       gender,
-      is_donar
+      is_donar,
     });
 
     const savedUser = await newUser.save();
 
-    res.status(200).json({ message: 'User registered successfully', user: savedUser });
+    res
+      .status(200)
+      .json({ message: "User registered successfully", user: savedUser });
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred', error: error.message });
+    res
+      .status(500)
+      .json({ message: "An error occurred", error: error.message });
   }
 };
-
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
-    console.log('user---------------------------',user);
+    console.log("user---------------------------", user);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -68,10 +80,10 @@ export const signIn = async (req, res) => {
 
     const token = jwt.sign(
       { email: user.email, id: user._id },
-      "your_secret_key",
+      "your_secret_key"
       // { expiresIn: "1h" }
     );
-    console.log('user---------------------------',user);
+    console.log("user---------------------------", user);
     res.status(200).json({
       token,
       user: {
@@ -79,7 +91,7 @@ export const signIn = async (req, res) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        is_donar: user.is_donar
+        is_donar: user.is_donar,
       },
     });
   } catch (error) {
@@ -88,7 +100,6 @@ export const signIn = async (req, res) => {
       .json({ message: "Could not sign in", error: error.message });
   }
 };
-
 
 export const getAllUser = async (req, res) => {
   try {
@@ -109,7 +120,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   try {
     const userId = req.params._id;
     const existingUser = await User.findById(userId);
@@ -123,20 +134,21 @@ export const updateUser = async (req, res) => {
     await existingUser.save();
     res.status(200).json({ message: "User data updated successfully" });
   } catch (error) {
-    res.status(500).json({ message: "An error occurred", error: error.message });
+    res
+      .status(500)
+      .json({ message: "An error occurred", error: error.message });
   }
 };
-
 
 export const deleteUser = async (req, res) => {
   // console.log(req.params)
   // console.log('name: ', id);
-  let data = await User.deleteOne(req.params)
+  let data = await User.deleteOne(req.params);
   if (data) {
     res.send({ message: "User data delete successfully" });
   } else {
-    res.send({ message: "User data cannot delete successfully" })
+    res.send({ message: "User data cannot delete successfully" });
   }
-}
+};
 
 // export default router;
