@@ -14,6 +14,7 @@ import PrivateRoute from './components/privateRoute/PrivateRoute';
 import ResetPassword from './components/auth/ResetPassword';
 
 import Admin from './pages/admin/Admin';
+import Review from './components/review/Review';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/review" element={<Review />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
