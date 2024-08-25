@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { FaUserCircle, FaBars } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { FaUserCircle, FaBars } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  const storedUserData = localStorage.getItem('userData')
+  const navigate = useNavigate();
+  const storedUserData = localStorage.getItem("userData");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -16,8 +16,8 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleNavigate = () => {
-    navigate('/admin')
-  }
+    navigate("/admin");
+  };
   return (
     <nav className="p-4 flex justify-between items-center bg-white border-gray-200 dark:bg-gray-900">
       <div className="flex items-center">
@@ -32,8 +32,9 @@ const Navbar = () => {
         </Link>
         {/* Hamburger Menu */}
         <div
-          className={`md:hidden text-center border rounded-md absolute left-0 top-16 h-50 bg-gray-800 w-60 transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-            }`}
+          className={`md:hidden text-center border rounded-md absolute left-0 top-16 h-50 bg-gray-800 w-60 transition-transform duration-300 ${
+            isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
         >
           <ul className="flex flex-col justify-center h-full">
             <li>
@@ -46,7 +47,6 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-
               <Link
                 to="/about"
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
@@ -78,25 +78,36 @@ const Navbar = () => {
                 Contact
               </Link>
             </li>
-            {
-              !storedUserData ? <>
+            {!storedUserData ? (
+              <>
                 <li>
-                  <Link to="/login" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <Link
+                    to="/login"
+                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
                     Login
                   </Link>
                 </li>
                 <li>
-                  <Link to="/signup" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <Link
+                    to="/signup"
+                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
                     Sign Up
                   </Link>
                 </li>
-              </> :
-                <Link onClick={() => { localStorage.clear(); window.location.reload() }} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  Logout
-                </Link>
-            }
-
-
+              </>
+            ) : (
+              <Link
+                onClick={() => {
+                  localStorage.clear();
+                  window.location.reload();
+                }}
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Logout
+              </Link>
+            )}
           </ul>
         </div>
       </div>
@@ -132,7 +143,7 @@ const Navbar = () => {
             >
               Donate
             </Link>
-          </li> 
+          </li>
           <li>
             <Link
               to="/review"
@@ -140,7 +151,7 @@ const Navbar = () => {
             >
               Review
             </Link>
-          </li> 
+          </li>
           <li>
             <Link
               to="/contact"
@@ -149,7 +160,6 @@ const Navbar = () => {
               Contact
             </Link>
           </li>
-
         </ul>
 
         {/* User Dropdown */}
@@ -160,25 +170,31 @@ const Navbar = () => {
         {isDropdownOpen && (
           <div className="absolute right-0 mt-48 w-48 bg-white border rounded-lg shadow-lg py-2">
             <ul>
-              {
-                !storedUserData ? <>
-                  <Link to='/login'>
+              {!storedUserData ? (
+                <>
+                  <Link to="/login">
                     <li className="px-4 py-2 hover:bg-gray-200">Login</li>
                   </Link>
-                  <Link to='/signup'>
+                  <Link to="/signup">
                     <li className="px-4 py-2 hover:bg-gray-200">Signup</li>
                   </Link>
-                </> :
-                  (
-                    <>
-                      <Link onClick={() => { localStorage.clear(); window.location.reload() }} className="px-4 py-2 hover:bg-gray-200">
-                        Logout
-                      </Link>
-                      {/* <Link to={'/admin'} className="px-4 py-2 hover:bg-gray-200">
+                </>
+              ) : (
+                <>
+                  <Link
+                    onClick={() => {
+                      localStorage.clear();
+                      window.location.reload();
+                    }}
+                    className="px-4 py-2 hover:bg-gray-200"
+                  >
+                    Logout
+                  </Link>
+                  {/* <Link to={'/admin'} className="px-4 py-2 hover:bg-gray-200">
                         Admin
                       </Link> */}
-                    </>)
-              }
+                </>
+              )}
             </ul>
           </div>
         )}
